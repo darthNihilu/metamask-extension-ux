@@ -25,6 +25,24 @@
     right: calc((100vw - 65vw) / 2);
   }
 
+  &__flex {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__copy-button {
+    display: block;
+    padding: 4px 8px;
+    background-color: #e1e1e1;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #b3b3b3;
+    }
+  }
+
   &__item {
     padding: 18px;
     display: flex;

@@ -41,6 +41,7 @@ import IconImport from '../../ui/icon/icon-import';
 
 import Button from '../../ui/button';
 import SearchIcon from '../../ui/icon/search-icon';
+import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard';
 import KeyRingLabel from './keyring-label';
 
 export function AccountMenuItem(props) {
@@ -63,6 +64,26 @@ export function AccountMenuItem(props) {
     </button>
   );
 }
+
+function CopyButton(props) {
+  const { address } = props;
+  const [copied, handleCopy] = useCopyToClipboard();
+
+  return (
+    <div
+      className="account-menu__copy-button"
+      onClick={() => {
+        handleCopy(address);
+      }}
+    >
+      {copied ? 'Copied' : 'Copy'}
+    </div>
+  );
+}
+
+CopyButton.propTypes = {
+  address: PropTypes.string,
+};
 
 AccountMenuItem.propTypes = {
   icon: PropTypes.node,
@@ -211,44 +232,49 @@ export default class AccountMenu extends Component {
       return (
         <button
           className="account-menu__account account-menu__item--clickable"
-          onClick={() => {
-            this.context.trackEvent({
-              category: EVENT.CATEGORIES.NAVIGATION,
-              event: EVENT_NAMES.NAV_ACCOUNT_SWITCHED,
-              properties: {
-                location: 'Main Menu',
-              },
-            });
-            showAccountDetail(identity.address);
+          onClick={(e) => {
+            if (!e.closest('.account-menu__copy-button')) {
+              this.context.trackEvent({
+                category: EVENT.CATEGORIES.NAVIGATION,
+                event: EVENT_NAMES.NAV_ACCOUNT_SWITCHED,
+                properties: {
+                  location: 'Main Menu',
+                },
+              });
+              showAccountDetail(identity.address);
+            }
           }}
           key={identity.address}
           data-testid="account-menu__account"
         >
-          <div className="account-menu__check-mark">
-            {isSelected ? (
-              <IconCheck color="var(--color-success-default)" />
-            ) : null}
-          </div>
-          <Identicon address={identity.address} diameter={24} />
-          <div className="account-menu__account-info">
-            <div className="account-menu__name">{identity.name || ''}</div>
-            <UserPreferencedCurrencyDisplay
-              className="account-menu__balance"
-              data-testid="account-menu__balance"
-              value={identity.balance}
-              type={PRIMARY}
-            />
-          </div>
-          <KeyRingLabel keyring={keyring} />
-          {iconAndNameForOpenSubject ? (
-            <div className="account-menu__icon-list">
-              <SiteIcon
-                icon={iconAndNameForOpenSubject.icon}
-                name={iconAndNameForOpenSubject.name}
-                size={32}
+          <div className="account-menu__flex">
+            <div className="account-menu__check-mark">
+              {isSelected ? (
+                <IconCheck color="var(--color-success-default)" />
+              ) : null}
+            </div>
+            <Identicon address={identity.address} diameter={24} />
+            <div className="account-menu__account-info">
+              <div className="account-menu__name">{identity.name || ''}</div>
+              <UserPreferencedCurrencyDisplay
+                className="account-menu__balance"
+                data-testid="account-menu__balance"
+                value={identity.balance}
+                type={PRIMARY}
               />
             </div>
-          ) : null}
+            <KeyRingLabel keyring={keyring} />
+            {iconAndNameForOpenSubject ? (
+              <div className="account-menu__icon-list">
+                <SiteIcon
+                  icon={iconAndNameForOpenSubject.icon}
+                  name={iconAndNameForOpenSubject.name}
+                  size={32}
+                />
+              </div>
+            ) : null}
+            <CopyButton address={identity.address} />
+          </div>
         </button>
       );
     });
