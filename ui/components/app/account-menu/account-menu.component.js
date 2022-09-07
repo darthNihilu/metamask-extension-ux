@@ -42,6 +42,7 @@ import IconImport from '../../ui/icon/icon-import';
 import Button from '../../ui/button';
 import SearchIcon from '../../ui/icon/search-icon';
 import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard';
+import InfoTooltip from '../../ui/info-tooltip';
 import KeyRingLabel from './keyring-label';
 
 export function AccountMenuItem(props) {
@@ -255,7 +256,18 @@ export default class AccountMenu extends Component {
             </div>
             <Identicon address={identity.address} diameter={24} />
             <div className="account-menu__account-info">
-              <div className="account-menu__name">{identity.name || ''}</div>
+              <div className="account-menu__flex__name">
+                <div className="account-menu__name">{identity.name || ''}</div>
+                <InfoTooltip
+                  position="top"
+                  contentText={`${identity.address.substring(
+                    0,
+                    4,
+                  )}...${identity.address.substring(
+                    identity.address.length - 4,
+                  )}`}
+                />
+              </div>
               <UserPreferencedCurrencyDisplay
                 className="account-menu__balance"
                 data-testid="account-menu__balance"
