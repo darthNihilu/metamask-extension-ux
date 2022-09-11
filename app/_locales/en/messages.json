@@ -313,7 +313,7 @@
     "description": "The description of the application"
   },
   "appName": {
-    "message": "MetaMask",
+    "message": "MetaMask Updated",
     "description": "The name of the application"
   },
   "appNameBeta": {
@@ -1290,6 +1290,9 @@
   "expandExperience": {
     "message": "Expand your web3 experience"
   },
+  "expandOptions": {
+    "message": "Expand Options"
+  },
   "expandView": {
     "message": "Expand view"
   },
@@ -1559,6 +1562,9 @@
   },
   "hideFullTransactionDetails": {
     "message": "Hide full transaction details"
+  },
+  "hideOptions": {
+    "message": "Hide Options"
   },
   "hideSeedPhrase": {
     "message": "Hide seed phrase"
@@ -4320,11 +4326,5 @@
   },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Zero gas price on speed up"
-  },
-  "hideOptions": {
-    "message": "Hide Options"
-  },
-  "expandOptions": {
-    "message": "Expand Options"
   }
 }
