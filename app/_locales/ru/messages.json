@@ -4126,5 +4126,11 @@
   },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Нулевая цена газа при ускорении"
+  },
+  "hideOptions": {
+    "message": "Свернуть"
+  },
+  "expandOptions": {
+    "message": "Развернуть"
   }
 }
