@@ -17,6 +17,7 @@ import UserPreferencedCurrencyDisplay from '../user-preferenced-currency-display
 import {
   PRIMARY,
   SUPPORT_LINK,
+  // eslint-disable-next-line
   SUPPORT_REQUEST_LINK,
 } from '../../../helpers/constants/common';
 import {
@@ -24,6 +25,7 @@ import {
   DEFAULT_ROUTE,
   IMPORT_ACCOUNT_ROUTE,
   NEW_ACCOUNT_ROUTE,
+  // eslint-disable-next-line
   NOTIFICATIONS_ROUTE,
   SETTINGS_ROUTE,
 } from '../../../helpers/constants/routes';
