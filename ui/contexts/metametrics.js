@@ -87,7 +87,8 @@ export function MetaMetricsProvider({ children }) {
         options,
       );
     },
-    [addContextPropsIntoEventProperties, context],
+    // eslint-disable-next-line
+    [context],
   );
 
   // Used to prevent double tracking page calls
